@@ -12,6 +12,8 @@ const eventController = require("../controller/events");
 // Definiamo le rotte
 router.get("/", eventController.index);
 router.post("/", eventController.store);
+router.post("/:id", eventController.show);
+
 router.put("/:event", eventController.update);
 
 

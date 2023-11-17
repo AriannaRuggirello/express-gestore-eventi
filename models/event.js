@@ -49,7 +49,7 @@ class singelEvent
             
             // Leggo il contenuto del db come stringa
             const eventData = fs.readFileSync(path.resolve(__dirname, '../db/events.json'), 'utf8');
-            return eventData ? JSON.parse(eventData) : ('array vuoto');
+            return eventData ? JSON.parse(eventData) : [];
         } catch (error) {
             // Gestisco gli errori durante la lettura del file JSON
             console.error('Errore durante la lettura del file JSON');
@@ -95,6 +95,30 @@ class singelEvent
             console.log('L\'evento con lo stesso ID già esiste.');
         }
     }
+
+    static getEventFromId(eventId) {
+        // Leggo tutti gli eventi esistenti
+        const existingEvents = SingelEvent.readEvents();
+    
+        // Trovo l'evento con l'ID specificato
+        const event = existingEvents.find(event => event.id === eventId);
+    
+        return event || null;
+      }
+    
+    
+      static filterEventsByMaxSeats(maxSeats) {
+        // Leggo tutti gli eventi esistenti
+        const existingEvents = singelEvent.readEvents();
+    
+        // Filtro gli eventi per numero massimo di posti
+        if (maxSeats) {
+          return existingEvents.filter(event => event.maxSeats >= maxSeats);
+        }
+    
+       
+        return existingEvents;
+      }
 }
  
 module.exports = singelEvent;
