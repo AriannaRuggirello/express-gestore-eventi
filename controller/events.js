@@ -21,7 +21,7 @@ function store(req, res) {
 
 function show(req, res) {
     res.type('html')
-    // Ottengo lo slug del post dalla richiesta
+    // Ottengo l'id del evento dalla richiesta
     const eventId = parseInt(req.params.id);
       // Chiamata al metodo statico del modello per ottenere l'evento con l'ID specificato
       const event = singleEvent.getEventFromId(eventId);

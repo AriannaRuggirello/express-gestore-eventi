@@ -1,11 +1,11 @@
 module.exports = function (err, req, res, next) {
  
 
-    res.status(500).json({
-      message: "error 500!internal server",
-      error: err.message,
+    res.status(500).send(
+     "<h1>error 500!internal server</h1>",
+      
 
-    });
+    );
 
 
 }
