@@ -2,7 +2,7 @@ const express= require('express');
 // istanza router
 const router= express.Router();
 const eventController = require("../controller/events");
-
+const error404Middleware=require("../middlewares/error404");
 
 // Milestone 1
 //     Creiamo le seguenti rotte con relativo controller e router senza implementare le funzioni del controller.
@@ -10,7 +10,7 @@ const eventController = require("../controller/events");
 //     [POST] events/ (store)
 //     [PUT] events/:event (update)
 // Definiamo le rotte
-router.get("/", eventController.index);
+router.get("/",error404Middleware, eventController.index);
 router.post("/", eventController.store);
 router.post("/:id", eventController.show);
 

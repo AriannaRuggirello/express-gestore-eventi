@@ -7,6 +7,10 @@ dotenv.config();
 const eventsRouter = require ('./router/events');
 // importo il model
 const singelEvent = require('./models/event');
+// esporto il middleware degli errori
+const errorsFormatterMiddleware = require("./middlewares/errorsFormatter");
+
+
 
 //********************** Creazione di un'istanza del models **********************
 const event = new singelEvent(1, 'zoom meeting', 'corso React Boolean', '2023-12-01', 26);
@@ -22,7 +26,8 @@ const app = express();
 // ********************** Rotte relative all'entità events **********************
 app.use("/events", eventsRouter);
 
-
+// Gestione degli errori
+app.use(errorsFormatterMiddleware)
 
 
 // Avviamo il server
